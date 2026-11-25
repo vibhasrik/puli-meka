@@ -69,12 +69,14 @@ def test_no_winner_at_start():
     assert winner(start((2, 5))) is None
 
 
-def test_tigers_win_by_capturing_all():
-    assert winner(make(tigers=(0,), captured=15)) == Piece.TIGER
+def test_tigers_win_at_6_captures():
+    assert winner(make(tigers=(0,), goats=(19,), captured=5)) is None
+    assert winner(make(tigers=(0,), captured=6)) == Piece.TIGER
 
 
-def test_goats_win_after_20_quiet_tiger_moves():
-    assert winner(make(tigers=(0,), goats=(19,), since=20)) == Piece.GOAT
+def test_goats_win_after_50_quiet_tiger_moves():
+    assert winner(make(tigers=(0,), goats=(19,), since=49)) is None
+    assert winner(make(tigers=(0,), goats=(19,), since=50)) == Piece.GOAT
 
 
 def test_goats_win_by_trapping():

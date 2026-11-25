@@ -25,12 +25,12 @@ Goats go first. Players alternate.
 
 ## Winning
 
-- **Tigers:** capture all 15 goats.
+- **Tigers:** capture 6 goats. (Sources differ: 5, 6, or all 15. I picked 6.)
 - **Goats:** leave no tiger with a legal move.
 
 ## Edge cases
 
 | Case                                                                                 | Rule                            |
 | ------------------------------------------------------------------------------------ | ------------------------------- |
-| Tigers go 20 moves in a row without a capture, counted after all 15 goats are placed | Goats win (tigers are cornered) |
+| Tigers go 50 moves in a row without a capture, counted after all 15 goats are placed | Goats win (tigers are cornered) |
 | A goat's turn, but no goat can move                                                  | Goats skip their turn           |

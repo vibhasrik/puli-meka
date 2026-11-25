@@ -3,6 +3,9 @@ from dataclasses import replace
 from board import NEIGHBORS, JUMPS
 from state import Piece, State, Move
 
+QUIET_LIMIT = 50  # tiger moves without a capture before goats win
+CAPTURE_LIMIT = 6  # captures tigers need to win
+
 
 def other(side):
     return Piece.TIGER if side == Piece.GOAT else Piece.GOAT
@@ -45,9 +48,9 @@ def apply_move(s: State, m: Move) -> State:
 
 def winner(s: State):
     """Piece.TIGER, Piece.GOAT, or None if the game isn't over."""
-    if s.goats_captured == 15:
+    if s.goats_captured >= CAPTURE_LIMIT:
         return Piece.TIGER
-    if s.moves_since_capture >= 20:
+    if s.moves_since_capture >= QUIET_LIMIT:
         return Piece.GOAT
     if s.turn == Piece.TIGER and not legal_moves(s):
         return Piece.GOAT
